@@ -2,6 +2,7 @@ import React from "react";
 import BookShelfChanger from './BookShelfChanger';
 
 const Book = (props)=>{
+    const {bookItem,onUpdateShelf} = props;
  
     return(
         <li>
@@ -11,18 +12,18 @@ const Book = (props)=>{
                <div className="book-top">
                     <div className="book-cover" 
                     style={{ width: 128, height: 192, 
-                        backgroundImage:((props.bookItem.imageLinks && props.bookItem.imageLinks.smallThumbnail) ?
-                        `url(${props.bookItem.imageLinks.smallThumbnail})`:"none")
+                        backgroundImage:((bookItem.imageLinks && bookItem.imageLinks.smallThumbnail) ?
+                        `url(${bookItem.imageLinks.smallThumbnail})`:"none")
                           }}></div>
                     <BookShelfChanger
-                    onUpdateShelf={props.onUpdateShelf}
-                    shelf={props.bookItem.shelf}
-                    bookItem={props.bookItem}
+                    onUpdateShelf={onUpdateShelf}
+                    shelf={bookItem.shelf}
+                    bookItem={bookItem}
                     />
                 </div>
-                <div className="book-title">{props.bookItem.title}</div>
-                <div className="book-authors">{(props.bookItem.author && props.bookItem.authors.length > 1 ?
-                props.bookItem.authors.join(", ") : props.bookItem.authors)}
+                <div className="book-title">{bookItem.title}</div>
+                <div className="book-authors">{(bookItem.author && bookItem.authors.length > 1 ?
+                bookItem.authors.join(", ") : bookItem.authors)}
                 </div>
             </div>
         

@@ -5,24 +5,25 @@ import { Link } from "react-router-dom";
 import * as BookAPI from "./BooksAPI";
 
 const SearchBook = (props) => {
+
+
   SearchBook.propTypes = {
     storedBooks: PropTypes.array.isRequired,
     onUpdateShelf: PropTypes.func.isRequired,
   };
 
   let [query, setquery] = useState("");
-  let searchedBooks = [];
+  let [searchedBooks,setsearchedBooks] = useState([]);
 
   const updateQuery = (query) => {
     setquery(query);
     BookAPI.search(query).then((searchResults) => {
       if (searchResults && searchResults.length > 0) {
         for (let i = 0; i < searchResults; i++) {
-          for (let j = 0; j < props.storedBooks; j++) {
+          for (let j = 0; j < props.storedBooks.length; j++) {
             if (searchResults[i].id === props.storedBooks[j].id) {
               const shelvedBookIndex = props.storedBooks.findIndex(
-                (book) => book.id === searchResults[i].id
-              );
+                (book) => book.id === searchResults[i].id);
               searchResults[i].shelf =
                 props.storedBooks[shelvedBookIndex].shelf;
             }
