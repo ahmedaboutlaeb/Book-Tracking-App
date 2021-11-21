@@ -17,19 +17,26 @@ const BookShelvs = (props) => {
       className='bookshelf' 
       title="Currently Reading"
       books={books.filter((book)=>book.shelf === "currentlyReading")}
-      updateShelf = {updateShelf}/>
+      updateShelf = {updateShelf}
+      />
 
 
-      <BookShelf className='bookshelf' 
+      <BookShelf 
+      className='bookshelf' 
       title="Want To Read" 
       books={books.filter((book)=>book.shelf === "wantToRead")}
-      updateShelf = {updateShelf}/>
+      updateShelf = {updateShelf}
+      />
       
 
 
-      <BookShelf className='bookshelf' title='read'
+      <BookShelf 
+      className='bookshelf' 
+      title='read'
       books={books.filter((book)=>book.shelf === "read")}
-      updateShelf = {updateShelf}/>
+      updateShelf = {updateShelf}
+      />
+      
     </div>
   );
 };

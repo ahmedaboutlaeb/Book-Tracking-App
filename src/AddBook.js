@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-const AddBook = (props) => {
+
+
+const AddBook = _ => {
   return (
     
       <div className="open-search">

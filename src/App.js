@@ -4,7 +4,7 @@ import * as BooksAPI from "./BooksAPI";
 import Title from "./Title";
 import BookShelvs from "./BookShelvs";
 import AddBook from "./AddBook";
-import BookSearch from "./BookSearch";
+import BookSearch from "./SearchBook";
 import { Route } from "react-router-dom";
 import "./App.css";
 
@@ -19,10 +19,12 @@ const BooksApp = () => {
     });
   }, []);
   
+ 
+  
 
   const updateShelf = (book, shelf) => {
-    const updateIndex = books.findIndex((bk) => bk.id === book.id); // get the index of the book
-    const updatedBookList = books; //all books
+    const updateIndex = books.findIndex((bk) => bk.id === book.id); 
+    const updatedBookList = books; 
     if (updateIndex === -1) {
       book.shelf = shelf;
       updatedBookList.push(book);
@@ -31,6 +33,7 @@ const BooksApp = () => {
     }
     
     setBooks(updatedBookList);
+    
     BooksAPI.update(book, shelf);
     setFlip(!flip);
   };
