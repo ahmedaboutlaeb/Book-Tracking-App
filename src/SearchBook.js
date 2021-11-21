@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+
 import PropTypes from "prop-types";
 import Book from "./Book";
 import { Link } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
+
 
 
 const SearchBook = (props) => {
@@ -29,18 +31,24 @@ const SearchBook = (props) => {
               searchResults[i].shelf = storedBooks[shelvedBookIndex].shelf;
               
             }
-        }
-        
+        }   
     }
     setsearchedBooks(searchResults)
       }
     });
   };
-  
 
+const changeHandler = (event) => updateQuery(event.target.value)
   
+const notFound = <h1 style={{color:'grey'}}>No Match Found</h1>;
 
-  
+const found = searchedBooks.map((book) => (
+    <Book
+      key = {book.id}
+      onUpdateShelf = {onUpdateShelf}
+      bookItem = {book}
+    />
+))
 
   return (
     <div className="search-books">
@@ -54,22 +62,14 @@ const SearchBook = (props) => {
             type="text"
             value={query}
             placeholder="Search by title or author"
-            onChange={(event) => updateQuery(event.target.value)}
+            onChange={changeHandler}
           />
         </div> 
       </div>
 
       <div className="search-books-results">
         <ol className="books-grid">
-          {searchedBooks && 
-          searchedBooks.length > 0 &&
-           searchedBooks.map((book) => (
-              <Book
-                key = {book.id}
-                onUpdateShelf = {onUpdateShelf}
-                bookItem = {book}
-              />
-            ))}
+          {searchedBooks && searchedBooks.length > 0 ? found : notFound}
         </ol>
       </div>
     </div>
