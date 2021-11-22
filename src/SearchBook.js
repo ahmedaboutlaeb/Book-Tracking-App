@@ -21,8 +21,8 @@ const SearchBook = (props) => {
   
   const updateQuery = (query) => {
     setQuery(query);
-    BooksAPI.search(query).then((searchResults) => {  
-     if(query==='') setsearchedBooks([]);
+    BooksAPI.search(query).then((searchResults) => { 
+      if(query==='' || searchResults.items==0) setsearchedBooks([]);
       if (searchResults && searchResults.length > 0) {
         for (let i = 0; i < searchResults.length; i++) {
           for (let j = 0; j < storedBooks.length; j++) {
@@ -31,12 +31,19 @@ const SearchBook = (props) => {
               searchResults[i].shelf = storedBooks[shelvedBookIndex].shelf;
               
             }
-        }   
-    }
+          }   
+        }
+        
     setsearchedBooks(searchResults)
+   
+    
+    
+    
+    
       }
     });
   };
+  
 
 const changeHandler = (event) => updateQuery(event.target.value)
   
